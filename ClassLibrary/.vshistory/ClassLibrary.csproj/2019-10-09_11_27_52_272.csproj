@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>Latest</LangVersion>
+    <PackageId>[PackageId]</PackageId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="Print.cs" Link="MyPrint.cs" />
+    <Content Include="Logo.jpg" Link="MyLogo.jpg" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="MyLogo.jpg">
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\wwwroot\images\</PackagePath>
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <Target Name="CopyLinkedContentFiles" BeforeTargets="Build">
+    <Copy SourceFiles="%(Content.Identity)"
+          DestinationFiles="%(Content.Link)"
+          SkipUnchangedFiles='true'
+          OverwriteReadOnlyFiles='true'
+          Condition="'%(Content.Link)' != ''" />
+  </Target>
+
+
+  <ItemGroup Label="Packaging">
+    <Content Include="build\netcoreapp2.1\[PackageId].targets" PackagePath="build\netcoreapp2.1\[PackageId].targets" />
+    <!-- Either -->
+    <!--<Content Include="Scripts\js\**\*.*" PackagePath="content\Scripts\js;contentFiles\Scripts\js" />-->
+    <!-- or -->
+    <!--<Content Include="Scripts\js\Utility.js" PackagePath="content\Scripts\js;contentFiles\Scripts\js" />-->
+    <Content Include="Logo.jpg" PackagePath="contentFiles\any\any\wwwroot\images\" />
+  </ItemGroup>
+
+</Project>

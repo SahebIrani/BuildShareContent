@@ -1,0 +1,14 @@
+﻿SinjulMSBH Print Message in netstandard2.1 .. !!!!
+
+@inject ClassLibrary.IPrint Print
+<span class="text-info display-3">@Print.ShowMessage("Hello World")</span>
+<span class="text-info display-3">@Print.ShowSinulMSBH()</span>
+
+
+dotnet nuget push BuildAndShare.1.0.0.nupkg -k oy2fg3i3h4tqcbgvqspq7jgmyeaxrsfeldxzefil7ey564 -s https://api.nuget.org/v3/index.json
+
+oy2fg3i3h4tqcbgvqspq7jgmyeaxrsfeldxzefil7ey564
+
+
+
+https://www.nuget.org/packages/BuildAndShare/

@@ -1,0 +1,75 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <LangVersion>Latest</LangVersion>
+    <PackageId>BuildAndShare</PackageId>
+    <Authors>SinjulMSBH</Authors>
+    <Product>BuildShareFiles</Product>
+    <Copyright>SinjulMSBH</Copyright>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+  </PropertyGroup>
+
+  <!--<ItemGroup>
+    <Compile Include="Print.cs" Link="MyPrint.cs" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="Logo.jpg" Link="MyLogo.jpg" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>-->
+
+  <ItemGroup>
+    <Content Include="Logo.jpg" Link="MyLogo.jpg">
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\wwwroot\images\</PackagePath>
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+    </Content>
+    <Compile Include="IPrint.cs" />
+    <Compile Include="Print.cs" Link="MyPrint.cs">
+      <Pack>true</Pack>
+      <PackagePath>contentFiles\any\any\MyServices\</PackagePath>
+      <CopyToOutputDirectory>true</CopyToOutputDirectory>
+    </Compile>
+  </ItemGroup>
+
+  <!--<ItemGroup Label="Packaging">
+    <Content Include="Logo.jpg" Link="MyLogoPackaging.jpg" PackagePath="contentFiles\any\any\wwwroot\images\" />
+    -->
+  <!--<Content Include="build\netcoreapp2.1\[PackageId].targets" PackagePath="build\netcoreapp2.1\[PackageId].targets" />-->
+  <!--
+  </ItemGroup>-->
+
+  <!--<Target Name="CopyLinkedContentAndCompileFiles" BeforeTargets="Build">
+    <Copy SourceFiles="%(Content.Identity)" DestinationFiles="%(Content.Link)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Condition="'%(Content.Link)' != ''" />
+    <Copy SourceFiles="%(Compile.Identity)" DestinationFiles="%(Compile.Link)" SkipUnchangedFiles="true" OverwriteReadOnlyFiles="true" Condition="'%(Compile.Link)' != ''" />
+  </Target>-->
+
+  <!-- Either do this for all scripts in the Scripts/js folder -->
+  <!--
+  <Target Name="CopyScriptsToProject" BeforeTargets="Build">
+    <Message Text="Copying scripts to project" />
+    <ItemGroup>
+      <SourceScripts Include="$(MSBuildThisFileDirectory)..\..\content\Scripts\js\**\*.*"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(SourceScripts)" DestinationFiles="@(SourceScripts -> '$(MSBuildProjectDirectory)\wwwroot\js\%(RecursiveDir)%(Filename)%(Extension)')" Condition="!Exists('$(MSBuildProjectDirectory)\wwwroot\js\%(RecursiveDir)%(Filename)%(Extension)')" />
+  </Target>
+  -->
+  <!-- Or do this for the individual script -->
+  <!--
+  <Target Name="CopyUtilityScriptToProject" BeforeTargets="Build">
+    <Copy SourceFiles="$(MSBuildThisFileDirectory)..\..\content\Scripts\js\Utility.js" DestinationFiles="$(MSBuildProjectDirectory)\wwwroot\js\Utility.js" Condition="!Exists('$(MSBuildProjectDirectory)\wwwroot\js\Utility.js')" />
+  </Target>
+
+  <ItemGroup>
+    <Content Include="Scripts\js\Utility.js">
+      <Pack>true</Pack>
+
+      <PackagePath>contentFiles\any\any\wwwroot\js\;content\any\any\wwwroot\js\</PackagePath>
+
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </Content>
+  </ItemGroup>-->
+
+  <!--<PackageReference Include="MyNuGetPackage" Version="0.0.0.1">
+    <IncludeAssets>all</IncludeAssets>
+    <PrivateAssets>analyzers;build</PrivateAssets>
+  </PackageReference>-->
+
+</Project>
